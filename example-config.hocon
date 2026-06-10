@@ -1,0 +1,58 @@
+// Example Locus config (placeholder credentials). The real production config
+// lives at config/config.hocon (gitignored). Structure matches the Scala server.
+locus.server.app: {
+
+  // subnets whose requests may carry a trusted X-Forwarded-For header
+  proxyServerAddresses: [ "10.101.0.0/16", "127.0.0.0/8" ]
+
+  // subnets granted anonymous (Read) access
+  anonymousSubnets: [
+    "127.0.0.0/16"
+    "10.101.0.0/24"
+  ]
+
+  dataDirectory: "data"   // local cache + temp live here
+
+  // credentials for s3:// repos (omit if you have no s3 repos)
+  s3: {
+    accessKey: "AKIA_EXAMPLE_KEY"
+    secretKey: "EXAMPLE_SECRET_KEY"
+  }
+
+  repos: [
+    {
+      _type: "multiplexer"
+      name: "all"
+      repos: ["maven2", "releases"]
+      repoForWrites: "releases"
+      generatedChecksums: [all]
+    }
+    {
+      _type: "url"
+      name: "maven2"
+      url: "https://repo1.maven.org/maven2"
+      generatedChecksums: [all]
+    }
+    {
+      _type: "url"
+      name: "releases"
+      url: "s3://my-artifacts-bucket/releases"
+      generatedChecksums: [all]
+    }
+    {
+      _type: "local"
+      name: "local-repo"
+      directory: "/var/lib/locus/local"
+      generatedChecksums: [all]
+    }
+  ]
+
+  users: [
+    { name: "deployer", password: "CHANGE_ME", privilege: "Write" }
+    { name: "reader",   password: "CHANGE_ME", privilege: "Read" }
+  ]
+
+  noCacheFiles: ["maven-metadata.xml"]
+  port: 7001
+  realm: "Accur8 Repo"
+}

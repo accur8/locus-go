@@ -1,0 +1,8 @@
+# build artifacts
+/locus
+/dist/
+# local caches / data
+/.gocache/
+/.gopath/
+/data/
+/temp/

@@ -1,0 +1,67 @@
+{
+  "nodes": {
+    "devshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nix-pins",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768818222,
+        "narHash": "sha256-460jc0+CZfyaO8+w8JNtlClB2n4ui1RbHfPTLkpwhU8=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "255a2b1725a20d060f566e4755dbf571bbbb5f76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "devshell",
+        "type": "github"
+      }
+    },
+    "nix-pins": {
+      "inputs": {
+        "devshell": "devshell",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1780148552,
+        "narHash": "sha256-FvzTjBurjwUyqqBr229objR+48KqNKI+8A3pcEoPn6I=",
+        "ref": "refs/heads/master",
+        "rev": "bcd88695d937d0b41a79a97d1e122b7fa02312c9",
+        "revCount": 111,
+        "type": "git",
+        "url": "ssh://git@git.accur8.net/a8/nix-pins"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@git.accur8.net/a8/nix-pins"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1778274207,
+        "narHash": "sha256-I4puXmX1iovcCHZlRmztO3vW0mAbbRvq4F8wgIMQ1MM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b3da656039dc7a6240f27b2ef8cc6a3ef3bccae7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nix-pins": "nix-pins"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
