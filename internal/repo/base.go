@@ -87,6 +87,7 @@ func (r *Repo) ClearCache(ctx context.Context, p cpath.ContentPath) ([]model.Cle
 
 // ResolveContent mirrors ResolvedRepo.resolveContent: generated (optional) then
 // cached then download, first non-nil wins; the result is written to cache.
+// One addition over the Scala: a miss then falls back to a .zst sibling.
 func (r *Repo) ResolveContent(ctx context.Context, p cpath.ContentPath, includeGenerated bool) (model.RepoContent, error) {
 	var result model.RepoContent
 	var err error
@@ -103,6 +104,13 @@ func (r *Repo) ResolveContent(ctx context.Context, p cpath.ContentPath, includeG
 	}
 	if result == nil {
 		if result, err = r.downloadContent(ctx, p); err != nil {
+			return nil, err
+		}
+	}
+	if result == nil {
+		// Last: X from X.zst (zst_sibling.go). After every ordinary source has
+		// missed, so an existing file never pays for the probe.
+		if result, err = r.resolveFromZstSibling(ctx, p); err != nil {
 			return nil, err
 		}
 	}

@@ -137,9 +137,12 @@ func checksumHandlersFor(names []string) []checksum.Kind {
 }
 
 // defaultGenerators mirrors ResolvedRepo.defaultContentGenerators order:
-// [ChecksumGenerator, GenerateMavenMetadata, GenerateIndexDotHtml].
+// [ChecksumGenerator, GenerateMavenMetadata, GenerateIndexDotHtml], plus the
+// listing-only zstSiblingGenerator (it claims no path, so its position is
+// irrelevant to content resolution).
 var defaultGenerators = []model.ContentGenerator{
 	checksumGenerator{},
 	mavenMetadataGenerator{},
 	indexHTMLGenerator{},
+	zstSiblingGenerator{},
 }
