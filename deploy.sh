@@ -13,10 +13,10 @@
 #   ./deploy.sh [ssh-target] [job-uid] [--port N] [--remote-bin P] [--env E] [--no-restart]
 #
 # Defaults target locus2 on a8-apps, which runs as a continuum daemon job of
-# the PROD job-runner (job dmnLocus2000000000000001, unit
-# a8-jobrun-dmnLocus2000000000000001.service, User=dev):
-#   ./deploy.sh                      # == ./deploy.sh dev@a8-apps dmnLocus2000000000000001
-#   ./deploy.sh dev@a8-apps dmnLocus2000000000000001 --port 7001 --env continuum-prod
+# the PROD job-runner (job 3XfbCtYP2Ushyb9hrJz1Pi5mEerzhp8w, unit
+# a8-jobrun-3XfbCtYP2Ushyb9hrJz1Pi5mEerzhp8w.service, User=dev):
+#   ./deploy.sh                      # == ./deploy.sh dev@a8-apps 3XfbCtYP2Ushyb9hrJz1Pi5mEerzhp8w
+#   ./deploy.sh dev@a8-apps 3XfbCtYP2Ushyb9hrJz1Pi5mEerzhp8w --port 7001 --env continuum-prod
 #
 # It scp's the binary to <remote-bin> (default bin/locus -> /home/dev/bin/locus),
 # staging+mv into place (mv works even if the running binary is busy), restarts
@@ -32,7 +32,7 @@ set -euo pipefail
 cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 SSH_TARGET="dev@a8-apps"
-SERVICE="dmnLocus2000000000000001"   # the daemon job uid
+SERVICE="3XfbCtYP2Ushyb9hrJz1Pi5mEerzhp8w"   # the daemon job uid
 ENV="continuum-prod"
 PORT=7001
 REMOTE_BIN="bin/locus"   # relative to the remote $HOME (a8-apps: /home/dev/bin/locus)
